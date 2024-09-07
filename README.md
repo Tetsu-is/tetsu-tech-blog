@@ -1,35 +1,33 @@
-# Astro Starter Kit: Blog
+# Tetsu tech blog
 
-```sh
-npm create astro@latest -- --template blog
-```
+### 目的
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/blog)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/blog/devcontainer.json)
+- ブログでアウトプットをしたい
+- 成果物が欲しい
+- ZennやQiitaでは検索汚染にならないか不安
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+という悩みを解決する！！
 
-![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
+### 特徴
 
-Features:
+Astro + Cloudflare Pages で簡単にコンテンツ管理とデプロイできる
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+ブログの更新はAstroの`src/content/`内にmdを追加する。
 
-## 🚀 Project Structure
+Cloudflare Pagesで自動deployので設定をしている。
 
-Inside of your Astro project, you'll see the following folders and files:
+- main->production automatic deployment
+- develop->preview automatic deployment
+
+
+
+##  Project Structure
 
 ```text
 ├── public/
 ├── src/
 │   ├── components/
-│   ├── content/
+│   ├── content/ <-ブログをmdで書いて追加
 │   ├── layouts/
 │   └── pages/
 ├── astro.config.mjs
@@ -37,6 +35,9 @@ Inside of your Astro project, you'll see the following folders and files:
 ├── package.json
 └── tsconfig.json
 ```
+
+
+## Astro
 
 Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
@@ -59,10 +60,3 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
