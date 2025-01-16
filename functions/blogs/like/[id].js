@@ -4,6 +4,7 @@ export function onRequest(context) {
         return new Response(`Liked blog with id: ${id}`);
     }
     catch (e) {
-        return new Response("Invalid request");
+        currentParams = context.params;
+        return new Response("Invalid request this is params: " + JSON.stringify(currentParams));
     }
 }
