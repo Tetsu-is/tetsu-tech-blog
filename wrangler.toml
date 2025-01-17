@@ -1,0 +1,6 @@
+compatibility_date = "2025-01-17"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "prod-d1"
+database_id = "9a03e2d6-c3f7-44fe-927e-47b08469342d"

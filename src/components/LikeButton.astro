@@ -1,0 +1,32 @@
+---
+
+---
+
+<button id="likeButton" class="like-button" type="button"> いいね </button>
+<script>
+  const button = document.getElementById("likeButton") as HTMLButtonElement;
+
+  async function handleClick() {
+    // console.log("いいねしました");
+
+    if (!button) {
+      throw new Error("いいねボタンが見つかりません");
+    }
+
+    button.textContent = "いいね済み";
+    button.disabled = true;
+
+    const url = "http://localhost:8788/likes/01JHTDF6QZRZCAQHT8CW78M7GW";
+
+    try {
+      const response = await fetch(url);
+      console.log("resp: ", response);
+    } catch (error) {
+      console.error("いいねに失敗しました", error);
+    }
+  }
+
+  if (button) {
+    button.addEventListener("click", handleClick);
+  }
+</script>
