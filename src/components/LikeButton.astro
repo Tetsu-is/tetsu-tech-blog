@@ -16,12 +16,15 @@
     button.textContent = "いいね済み";
     button.disabled = true;
 
-    const url =
-      "https://tetsu-tech-blog.pages.dev/likes/01JHTDF6QZRZCAQHT8CW78M7GW";
+    const currentUrl = window.location.href;
+    const url = new URL(currentUrl);
+    const id = "01JHTDF6QZRZCAQHT8CW78M7GW";
+    const workersUrl = url.origin + "/likes/" + id;
 
     try {
-      const response = await fetch(url);
+      const response = await fetch(workersUrl);
       console.log("resp: ", response);
+      console.log(workersUrl);
     } catch (error) {
       console.error("いいねに失敗しました", error);
     }
