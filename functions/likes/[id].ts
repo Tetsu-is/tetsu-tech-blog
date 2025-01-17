@@ -6,6 +6,13 @@ export interface Env {
   DB: D1Database;
 }
 
+
+const corsHeaders = {
+    "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
+      "Access-Control-Max-Age": "86400",
+}
+
 export const onRequest: PagesFunction<Env> = async (context) => {
     const id = context.params.id
     const q = "UPDATE blogs SET likes_count = likes_count + 1 WHERE id = ?"
@@ -13,5 +20,10 @@ export const onRequest: PagesFunction<Env> = async (context) => {
         .bind(id)
         .run()
 
-    return Response.json(result)
+    return new Response(JSON.stringify(result), {
+        headers: {
+            ...corsHeaders,
+            "Content-Type": "application/json"
+        }
+    })
 }
