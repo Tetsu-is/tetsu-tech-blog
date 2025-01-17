@@ -4,7 +4,7 @@
 
 <button id="likeButton" class="like-button" type="button"> いいね </button>
 <script>
-  const button = document.getElementById("likeButton");
+  const button = document.getElementById("likeButton") as HTMLButtonElement;
 
   async function handleClick() {
     // console.log("いいねしました");
@@ -26,5 +26,7 @@
     }
   }
 
-  button.addEventListener("click", handleClick);
+  if (button) {
+    button.addEventListener("click", handleClick);
+  }
 </script>
