@@ -1,0 +1,27 @@
+---
+
+---
+
+<div class="likes-count" id="likes-count"></div>
+<script>
+  const likesCountDOM = document.getElementById("likes-count");
+  const response = await fetch(
+    "http://localhost:8788/api/likes/01JHTDF6QZRZCAQHT8CW78M7GW"
+  );
+  const data = await response.json();
+  console.log("data", data);
+  console.log("result", data.result);
+  console.log("likesCount", data.result.likes_count);
+
+  const likesCount = data.result.likes_count;
+
+  if (!likesCountDOM) {
+    throw new Error("Element with id 'likes-count' not found");
+  }
+  likesCountDOM.textContent = `${likesCount} likes`;
+</script>
+<style>
+  .likes-count {
+    color: rgb(var(--gray));
+  }
+</style>
