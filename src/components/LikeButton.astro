@@ -19,13 +19,12 @@ const { blogID } = Astro.props;
     button.textContent = "いいね済み";
     button.disabled = true;
     const id = button.value;
+    const workersURL = "https://tetsu-tech-blog.pages.dev/api/likes/" + id;
 
-    const currentUrl = window.location.href;
-    const url = new URL(currentUrl);
-    const workersUrl = url + "api/likes/" + id;
+    // const devURL = "http://localhost:8788/api/likes/" + id;
 
     try {
-      await fetch(workersUrl, {
+      await fetch(workersURL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,3 +39,13 @@ const { blogID } = Astro.props;
     button.addEventListener("click", handleClick);
   }
 </script>
+<style>
+  .like-button {
+    background-color: rgb(var(--gray));
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5em 1em;
+    cursor: pointer;
+  }
+</style>
