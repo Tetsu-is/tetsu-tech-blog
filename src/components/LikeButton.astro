@@ -10,8 +10,6 @@ const { blogID } = Astro.props;
   const button = document.getElementById("likeButton") as HTMLButtonElement;
 
   async function handleClick() {
-    // console.log("いいねしました");
-
     if (!button) {
       throw new Error("いいねボタンが見つかりません");
     }

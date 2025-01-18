@@ -2,16 +2,13 @@
 
 ---
 
-<div class="likes-count" id="likes-count"></div>
+<div class="likes-count" id="likes-count">0 likes</div>
 <script>
   const likesCountDOM = document.getElementById("likes-count");
   const response = await fetch(
-    "http://localhost:8788/api/likes/01JHTDF6QZRZCAQHT8CW78M7GW"
+    "https://tetsu-tech-blog.pages.dev/api/likes/01JHTDF6QZRZCAQHT8CW78M7GW"
   );
   const data = await response.json();
-  console.log("data", data);
-  console.log("result", data.result);
-  console.log("likesCount", data.result.likes_count);
 
   const likesCount = data.result.likes_count;
 
