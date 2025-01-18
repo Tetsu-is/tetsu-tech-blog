@@ -22,10 +22,15 @@ const { blogID } = Astro.props;
 
     const currentUrl = window.location.href;
     const url = new URL(currentUrl);
-    const workersUrl = url.origin + "/likes/" + id;
+    const workersUrl = url + "api/likes/" + id;
 
     try {
-      await fetch(workersUrl);
+      await fetch(workersUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
     } catch (error) {
       console.error("いいねに失敗しました", error);
     }
