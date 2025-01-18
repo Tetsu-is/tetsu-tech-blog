@@ -1,8 +1,11 @@
 ---
-
+// this receives only the blogID as a prop
+const { blogID } = Astro.props;
 ---
 
-<button id="likeButton" class="like-button" type="button"> いいね </button>
+<button id="likeButton" class="like-button" type="button" value={blogID}>
+  いいね</button
+>
 <script>
   const button = document.getElementById("likeButton") as HTMLButtonElement;
 
@@ -15,16 +18,14 @@
 
     button.textContent = "いいね済み";
     button.disabled = true;
+    const id = button.value;
 
     const currentUrl = window.location.href;
     const url = new URL(currentUrl);
-    const id = "01JHTDF6QZRZCAQHT8CW78M7GW";
     const workersUrl = url.origin + "/likes/" + id;
 
     try {
-      const response = await fetch(workersUrl);
-      console.log("resp: ", response);
-      console.log(workersUrl);
+      await fetch(workersUrl);
     } catch (error) {
       console.error("いいねに失敗しました", error);
     }

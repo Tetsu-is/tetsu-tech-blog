@@ -1,8 +1,9 @@
 ---
-title: 'Test post'
-description: 'This is a test post'
-pubDate: 'Sep 07 2024'
-heroImage: '/blog-placeholder-3.jpg'
+title: "Test post"
+description: "This is a test post"
+pubDate: "Sep 07 2024"
+heroImage: "/blog-placeholder-3.jpg"
+blogID: "hogehoge"
 ---
 
 TESTTESTTESTTESTTESTTESTTESTTESTTESTTEST
