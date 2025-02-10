@@ -1,5 +1,5 @@
-name: build astro project
-run-name: build astro project
+name: build astro
+run-name: build astro
 on: [pull_request]
 jobs:
   build:

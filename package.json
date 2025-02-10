@@ -1,25 +1,28 @@
 {
-  "name": "tetsu-tech-blog",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/check": "^0.9.3",
-    "@astrojs/mdx": "^3.1.5",
-    "@astrojs/rss": "^4.0.7",
-    "@astrojs/sitemap": "^3.1.6",
-    "@cloudflare/workers-types": "^4.20250109.0",
-    "astro": "^4.15.4",
-    "hono": "^4.6.16",
-    "typescript": "^5.5.4"
-  },
-  "devDependencies": {
-    "wrangler": "^3.103.0"
-  }
+	"name": "tetsu-tech-blog",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro check && astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"format": "biome format --write",
+		"lint": "biome lint --write",
+		"check": "biome check --write"
+	},
+	"dependencies": {
+		"@astrojs/check": "^0.9.3",
+		"@astrojs/mdx": "^3.1.5",
+		"@astrojs/rss": "^4.0.7",
+		"@astrojs/sitemap": "^3.1.6",
+		"@cloudflare/workers-types": "^4.20250109.0",
+		"astro": "^4.15.4",
+		"hono": "^4.6.16",
+		"typescript": "^5.5.4"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"wrangler": "^3.103.0"
+	}
 }
