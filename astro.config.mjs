@@ -9,10 +9,4 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
 	site: "https://tetsu-tech-blog.pages.dev",
 	integrations: [mdx(), sitemap()],
-	output: "hybrid",
-	adapter: cloudflare(),
-	experimental: {
-		serverIslands: true,
-		contentLayer: true,
-	},
 });

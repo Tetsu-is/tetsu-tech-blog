@@ -1,11 +1,11 @@
 ---
 const { blogID } = Astro.props;
 const response = await fetch(
-	`https://tetsu-tech-blog.pages.dev/api/likes/${blogID}`,
+  `https://tetsu-tech-blog.pages.dev/api/likes/${blogID}`
 );
 const data = await response.json();
 if (!data.result) {
-	return;
+  return;
 }
 const likesCount = data.result.likes_count;
 ---
