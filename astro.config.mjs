@@ -7,11 +7,12 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://example.com",
+	site: "https://tetsu-tech-blog.pages.dev",
 	integrations: [mdx(), sitemap()],
-	adapter: cloudflare(),
 	output: "hybrid",
+	adapter: cloudflare(),
 	experimental: {
 		serverIslands: true,
+		contentLayer: true,
 	},
 });

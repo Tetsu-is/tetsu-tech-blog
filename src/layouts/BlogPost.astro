@@ -10,7 +10,7 @@ import LikesCount from "../components/LikesCount.astro";
 type Props = CollectionEntry<"blog">["data"];
 
 const { title, description, pubDate, updatedDate, heroImage, blogID } =
-	Astro.props;
+  Astro.props;
 ---
 
 <html lang="en">
@@ -85,7 +85,9 @@ const { title, description, pubDate, updatedDate, heroImage, blogID } =
           </div>
           <slot />
           <div class="likes-container">
-            <LikesCount blogID={blogID} server:defer />
+            <LikesCount blogID={blogID} server:defer>
+              <div slot="fallback">Loading...</div>
+            </LikesCount>
             <LikeButton blogID={blogID} />
           </div>
         </div>
