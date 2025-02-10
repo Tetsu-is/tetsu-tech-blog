@@ -85,7 +85,7 @@ const { title, description, pubDate, updatedDate, heroImage, blogID } =
           </div>
           <slot />
           <div class="likes-container">
-            <LikesCount />
+            <LikesCount blogID={blogID} server:defer />
             <LikeButton blogID={blogID} />
           </div>
         </div>
