@@ -1,0 +1,3 @@
+-- Migration number: 0001 	 2025-02-13T15:24:06.035Z
+DROP TABLE IF EXISTS blogs;
+CREATE TABLE IF NOT EXISTS blogs (id TEXT PRIMARY KEY, name TEXT, likes_count INTEGER);
