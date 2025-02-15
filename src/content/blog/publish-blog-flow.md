@@ -169,7 +169,7 @@ query="INSERT INTO blogs (id, name, likes_count) VALUES (\"${blogID}\", \"${titl
 echo $query >$target
 ```
 
-template.md
+**template.md**
 
 ```md
 ---
