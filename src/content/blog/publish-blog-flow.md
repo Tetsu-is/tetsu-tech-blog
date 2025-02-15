@@ -114,6 +114,73 @@ shell でロジックを書いて make で呼び出すという格好にした�
 shell で使えるツールで良いものが見つからなかったので、npm パッケージを使うことにしました。
 ulid の部分のみ ts ファイルで実行する格好になったので少し格好悪くなりましたが、使い勝手は良くなりました。
 
+#### 実装箇所の説明
+
+**Makefile**
+
+```make
+blog/new:
+	sh ./scripts/create_blog.sh # 記事生成用のスクリプト
+
+migrate/local:
+	bunx wrangler d1 migrations apply prod-d1 --local # ローカルのマイグレーション
+
+migrate/remote:
+	bunx wrangler d1 migrations apply prod-d1 --remote # 本番のマイグレーション
+```
+
+**create_blog.sh**
+
+```sh
+#constant vars
+DB_NAME="prod-d1"
+
+# get tittle from input
+read -p "Enter title: " title
+if [ -z "$title" ]; then
+    echo "Error: Title cannot be empty."
+    exit 1
+fi
+
+tittle=$title
+description="description"
+pubDate=$(date +"%b' '%d' '%Y")
+blogID=$(bun scripts/ulid.ts) # ulidを生成するだけのtsファイルを実行
+heroImage="heroImage"
+migration_name="insert_blog_$blogID"
+
+# envsubstのために変数を環境変数にしておく。envsubstは環境変数を使ってtemplateに変数を埋め込む
+export title description pubDate blogID heroImage
+
+# template.mdの$variableを変数で置換したものを、src/content/blog/$title.mdに出力
+if ! envsubst <./scripts/template.md >"src/content/blog/$title.md"; then
+    echo "Failed to create markdown file."
+    exit 1
+fi
+
+# wranglerを使ってd1のマイグレーションファイルを作成する
+bunx wrangler d1 migrations create $DB_NAME $migration_name
+
+target=$(find migrations -name "*_$migration_name.sql")
+
+query="INSERT INTO blogs (id, name, likes_count) VALUES (\"${blogID}\", \"${title}\", 0);"
+
+# 空のマイグレーションファイルにクエリを書き込む
+echo $query >$target
+```
+
+**template.md**
+
+```md
+---
+title: "$title"
+description: "$description"
+pubDate: "$pubDate"
+heroImage: "$heroImage"
+blogID: "$blogID"
+---
+```
+
 #### まとめ
 
 今回は自作ブログサイトの投稿フロー改善に挑戦してみました。
