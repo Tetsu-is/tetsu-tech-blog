@@ -169,6 +169,18 @@ query="INSERT INTO blogs (id, name, likes_count) VALUES (\"${blogID}\", \"${titl
 echo $query >$target
 ```
 
+template.md
+
+```md
+---
+title: "$title"
+description: "$description"
+pubDate: "$pubDate"
+heroImage: "$heroImage"
+blogID: "$blogID"
+---
+```
+
 #### まとめ
 
 今回は自作ブログサイトの投稿フロー改善に挑戦してみました。
