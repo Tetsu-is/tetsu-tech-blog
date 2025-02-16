@@ -96,6 +96,15 @@ CREATE TABLE blogs (
 
 migration には wrangler(cloudflare の CLI)でマイグレーションファイルを作成して、クエリを書く必要があります。こちらも`make blog/new`コマンドで md といっしょにマイグレーションファイルも自動生成するようにしました。
 
+自動生成されたマイグレーションファイル(5 番目のファイルの場合)
+
+0005_insert_blog_01JM7E6R3KV1J3BYD4XY17ND2N.sql
+
+```sql
+-- Migration number: 0005 	 2025-02-16T13:12:17.743Z
+INSERT INTO blogs (id, name, likes_count) VALUES ("01JM7E6R3KV1J3BYD4XY17ND2N", "SAMPLE_BLOG_NAME", 0);
+```
+
 ★ マイグレーションの実行
 
 マイグレーションは wrangler の CLI で行います。
@@ -135,14 +144,14 @@ migrate/remote:
 #constant vars
 DB_NAME="prod-d1"
 
-# get tittle from input
+# get title from input
 read -p "Enter title: " title
 if [ -z "$title" ]; then
     echo "Error: Title cannot be empty."
     exit 1
 fi
 
-tittle=$title
+title=$title
 description="description"
 pubDate=$(date +"%b' '%d' '%Y")
 blogID=$(bun scripts/ulid.ts) # ulidを生成するだけのtsファイルを実行
