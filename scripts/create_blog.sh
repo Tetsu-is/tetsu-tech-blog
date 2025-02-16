@@ -1,7 +1,7 @@
 #constant vars
 DB_NAME="prod-d1"
 
-# get tittle from input
+# get title from input
 read -p "Enter title: " title
 if [ -z "$title" ]; then
     echo "Error: Title cannot be empty."
@@ -9,7 +9,7 @@ if [ -z "$title" ]; then
 fi
 
 # init vars
-tittle=$title
+title=$title
 description="description"
 pubDate=$(date +"%b' '%d' '%Y")
 blogID=$(bun scripts/ulid.ts)
@@ -19,7 +19,7 @@ migration_name="insert_blog_$blogID"
 export title description pubDate blogID heroImage
 
 # print all vars to check
-echo "tittle: $tittle"
+echo "title: $title"
 echo "description: $description"
 echo "pubDate: $pubDate"
 echo "blogID: $blogID"
@@ -36,4 +36,4 @@ target=$(find migrations -name "*_$migration_name.sql")
 
 query="INSERT INTO blogs (id, name, likes_count) VALUES (\"${blogID}\", \"${title}\", 0);"
 
-echo $query >$target
+echo $query >>$target
