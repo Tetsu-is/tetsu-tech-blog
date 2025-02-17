@@ -10,6 +10,8 @@ jobs:
     if: github.event.pull_request.merged == true
     steps:
       - uses: actions/checkout@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
       - name: Apply migrations
         uses: cloudflare/wrangler-action@v3
         with:
@@ -23,6 +25,8 @@ jobs:
     if: github.event.pull_request.merged == true
     steps:
       - uses: actions/checkout@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
       - name: Build & Deploy Worker
         uses: cloudflare/wrangler-action@v3
         with:
