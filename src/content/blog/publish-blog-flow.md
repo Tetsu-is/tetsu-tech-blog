@@ -18,40 +18,53 @@ blogID: "01JM4JYQ9Q9G2F7X20JVNRMBEY"
 
 - Astro:
   - SSG が便利なフロントエンドフレームワーク
-  - build 時に`md`を`html`にしてくれる。共通レイアウトなども使いやすい。
-  - 記事を md で書いて公開している
+  - ブログを markdown として管理している
+  - markdown を書くとビルド時に html を生成してくれる
 - Cloudflare Pages:
   - 静的サイトのホスティングサービス
-  - 基本無料で使える
-  - CD を組んでいて main ブランチに merge するだけでデプロイできる
+  - main に merge すると自動デプロイされるようにしている
 - Cloudflare Pages Function:
   - サーバーレス関数を公開できるサービス
-  - 無料で 100,000 リクエスト/日まで使用可能
-  - Pages の`function/`内に配置することで API を作成できる
-  - Hono を使って API として使っている
+  - Hono で API を実装。
+  - いいね数の更新、取得を行う
 - Cloudflare D1 Database:
   - SQLite 互換のサーバーレスデータベース
-  - これも無料枠がでかくて便利
-  - 記事ごとの良いね数を保存している
+  - ブログのメタデータの格納している
+  - ID、タイトル、良いね数
 
 #### 今回のフロー改善の効果
 
-**一覧**
+**▲ 既存の投稿フロー**
+
+1. md ファイルの手動作成
+2. ULID を 発行して md ファイルのメタ情報に記述
+3. md ファイルに内容を書く
+4. マイグレーションファイルの作成
+5. マイグレーションを CLI で実行
+6. 差分を main ブランチにマージする
+7. CD で自動デプロイ
+
+**★ 改善後の投稿フロー**
+
+1. `make blog/new` md とマイグレーション自動作成
+2. md ファイルに内容を書く
+3. 差分を main ブランチにマージする
+4. CD で自動デプロイ
 
 効果の一覧は以下の通りです。
 
-| 項目                                         | 改善前                            | 改善後       |
-| -------------------------------------------- | --------------------------------- | ------------ |
-| md ファイルの作成                            | 手作業                            | 自動化       |
-| ULID の採番                                  | ULID Generator のサイトからコピペ | 自動化       |
-| レコード追加のためのマイグレーションファイル | 手書き                            | 自動化       |
-| マイグレーションの実行                       | CLI 手打ち                        | コマンド実行 |
+| 項目                                         | 改善前                            | 改善後      |
+| -------------------------------------------- | --------------------------------- | ----------- |
+| md ファイルの作成                            | 手作業                            | 自動化      |
+| ULID の採番                                  | ULID Generator のサイトからコピペ | 自動化      |
+| レコード追加のためのマイグレーションファイル | 手書き                            | 自動化      |
+| マイグレーションの実行                       | CLI 手打ち                        | main マージ |
 
 **個別の説明**
 
 ここからは、それぞれの改善点がどのように良くなったかを説明します。
 
-★md ファイルの作成
+① md ファイルの作成
 
 Astro の[Content collection](https://docs.astro.build/en/guides/content-collections/)を使うために以下の作業が必要になります。
 
@@ -73,28 +86,13 @@ blogID: "01JM4JYQ9Q9G2F7X20JVNRMBEY" <!-- DB と紐づけるためのID -->
 〜〜記事の本文〜〜
 ```
 
-これまでは手作業で md ファイルを作成して、ULID 生成サイトから ID をコピペしてきて、DB 側と一致させていましたが、
-`make blog/new`コマンドでテンプレートから自動作成するようにしました。
+メタデータは自動で生成されるようになったので、description と記事の本文だけ書けば良いようになりました 👍
 
-★ ULID の採番
+② ULID の採番
 
 これは Astro 側で管理している markdown と DB のレコードを一致させるために必要になります。ULID は shell で実行するツールで良さげなものがなかったので毎回 ULID を生成サイトに頼っていました。今回は`make blog/new`コマンドの実行時に ULID を生成する TS ファイルを実行するようにしました。npm に便利な[ulid](https://www.npmjs.com/package/ulid)ライブラリがあるのでそれを使っています。
 
-★ マイグレーションファイルの作成
-
-本プロジェクトでは良いね機能のために各記事の"良いね数"をテーブルに保存しています。
-
-blogs テーブル
-
-```sql
-CREATE TABLE blogs (
-  id TEXT PRIMARY KEY, -- md側と一致させる
-  name TEXT,
-  like_count INTEGER -- 良いね数
-);
-```
-
-migration には wrangler(cloudflare の CLI)でマイグレーションファイルを作成して、クエリを書く必要があります。こちらも`make blog/new`コマンドで md といっしょにマイグレーションファイルも自動生成するようにしました。
+③ マイグレーションファイルの作成
 
 自動生成されたマイグレーションファイル(5 番目のファイルの場合)
 
@@ -105,23 +103,12 @@ migration には wrangler(cloudflare の CLI)でマイグレーションファ�
 INSERT INTO blogs (id, name, likes_count) VALUES ("01JM7E6R3KV1J3BYD4XY17ND2N", "SAMPLE_BLOG_NAME", 0);
 ```
 
-★ マイグレーションの実行
+cloudflare D1 のマイグレーション作成コマンドとマイグレーション用のクエリ作成の手間がなくなりました 👍
 
-マイグレーションは wrangler の CLI で行います。
-`bunx wrangler d1 migrations apply <DB_NAME> --remote`を毎回打つのが面倒でした。そこで今回は`make migrate/local`、`make migrate/remote`を作成してコマンドを実行するようにしました。
+④ マイグレーションの実行
 
-#### 詰まったこと&学び
-
-**make コマンド上でロジックを書くのが難しかった**
-
-make の中でロジックを書くと変数の管理が面倒になったり、shell のパイプが複雑で見づらくなることがありました。
-
-shell でロジックを書いて make で呼び出すという格好にしたところ簡潔になり、実装も楽になりました。タスクランナーとして使っているので呼び出しだけを書くほうが見やすくなりました。
-
-**ULID を生成するツールの選定が難しかった**
-
-shell で使えるツールで良いものが見つからなかったので、npm パッケージを使うことにしました。
-ulid の部分のみ ts ファイルで実行する格好になったので少し格好悪くなりましたが、使い勝手は良くなりました。
+cloudflare D1 のマイグレーションコマンドを github actions で自動実行するようにしました。
+main に pull_request がマージされるとマイグレーションが実行されたうえで自動デプロイされるようになりました 👍
 
 #### 実装箇所の説明
 
@@ -190,7 +177,31 @@ blogID: "$blogID"
 ---
 ```
 
+**merge_main.yml**
+
+```yml
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+      - name: Install dependencies
+        run: bun install
+      - name: Run bun migrate
+        run: bunx wrangler d1 migrations apply DATABASE_NAME --remote
+```
+
 #### まとめ
 
 今回は自作ブログサイトの投稿フロー改善に挑戦してみました。
-はじめは npm パッケージに頼る部分、wrangler 実行、 shell でのファイル作成などが色々あって make コマンドとしてどうまとめようか迷いました。きれいに作ろうとするよりもコマンドとしての使い勝手を優先しようと考えたところ思いのほかスムーズに実装できました。体験設計から逆算して作っていくのが良いなと感じました。いろいろやってみて Zenn ってすごいなぁと思いましたね、、。それはさておき、今回の修正でブログ更新のハードルが一気に下がったので、これからどんどんブログを更新しようと思います。
+これからはブログ更新のハードルが一気に下がったので、これからどんどんブログを更新しようと思います。
