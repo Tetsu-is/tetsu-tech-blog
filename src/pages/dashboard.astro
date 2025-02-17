@@ -1,0 +1,25 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import BaseHead from "../components/BaseHead.astro";
+import LikesContainer from "../components/LikesContainer.svelte";
+---
+
+<!doctype html>
+<html>
+  <head>
+    <BaseHead title="Dashboard" description="Dashboard" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <Header />
+    <h1>Dashboard</h1>
+    <br />
+    <section>
+      <h3>Likes Container</h3>
+      <LikesContainer client:only />
+    </section>
+    <p>Welcome to the dashboard!</p>
+    <Footer />
+  </body>
+</html>
