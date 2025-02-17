@@ -191,14 +191,35 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+      - name: Apply migrations
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: d1 migrations apply prod-d1 --remote
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: migrate
+    if: github.event.pull_request.merged == true
+    steps:
+      - uses: actions/checkout@v4
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
       - name: Install dependencies
         run: bun install
-      - name: Run bun migrate
-        run: bunx wrangler d1 migrations apply DATABASE_NAME --remote
+      - name: Build
+        run: bun run build
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ./dist --project-name tetsu-tech-blog
+
 ```
 
 #### まとめ
