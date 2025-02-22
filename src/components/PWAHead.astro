@@ -1,0 +1,23 @@
+---
+import { pwaInfo } from "virtual:pwa-info";
+
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props as Props;
+---
+
+<meta charset="UTF-8" />
+<!-- required for PWA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={title + "description here"} />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/thumbnail.png" sizes="180x180" />
+<link rel="mask-icon" href="/favicon.svg" color="#FFFFFF" />
+<meta name="theme-color" content="#ffffff" />
+<!--  -->
+<meta name="msapplication-TileColor" content="#FFFFFF" />
+<script src="/src/pwa.ts"></script>
+{pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}

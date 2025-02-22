@@ -1,0 +1,42 @@
+---
+import PWAHead from "../components/PWAHead.astro";
+---
+
+<!doctype html>
+<html>
+  <head>
+    <PWAHead title="Admin Page" />
+  </head>
+  <body>
+    <h1>Admin Page</h1>
+    <p>Admin page is here.</p>
+    <button>Notify me!</button>
+  </body>
+</html>
+<script>
+  function notifyMe() {
+    if (!("Notification" in window)) {
+      // ブラウザーが通知に対応しているか調べる
+      alert("このブラウザーはデスクトップ通知に対応していません。");
+    } else if (Notification.permission === "granted") {
+      // 通知権限が既に付与されているかどうかを調べる。
+      // そうであれば、通知を作成
+      const notification = new Notification("こんにちは！");
+      // …
+    } else if (Notification.permission !== "denied") {
+      // ユーザーにその権限を要求する必要がある
+      Notification.requestPermission().then((permission) => {
+        // ユーザーが許可したら、通知を作成
+        if (permission === "granted") {
+          const notification = new Notification("こんにちは！");
+          // …
+        }
+      });
+    }
+
+    // 最後に、ユーザーが通知を拒否していて、あなたが敬意を
+    // 払いたい場合は、これ以上相手を煩わせることはありません。
+  }
+  // add click event to button
+  document.querySelector("button")!.addEventListener("click", notifyMe);
+</script>

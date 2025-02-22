@@ -1,0 +1,12 @@
+// biome-ignore-next-line
+import { registerSW } from "virtual:pwa-register";
+
+registerSW({
+  immediate: true,
+  onRegisteredSW(swScriptUrl: any) {
+    console.log("SW registered: ", swScriptUrl);
+  },
+  onOfflineReady() {
+    console.log("PWA application ready to work offline");
+  },
+});
