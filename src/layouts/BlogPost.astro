@@ -6,11 +6,12 @@ import FormattedDate from "../components/FormattedDate.astro";
 import Header from "../components/Header.astro";
 import LikeButton from "../components/LikeButton.astro";
 import LikesCount from "../components/LikesCount.astro";
+import LikesContainer from "../components/LikesContainer.svelte";
 
 type Props = CollectionEntry<"blog">["data"];
 
 const { title, description, pubDate, updatedDate, heroImage, blogID } =
-	Astro.props;
+  Astro.props;
 ---
 
 <html lang="en">
@@ -84,22 +85,10 @@ const { title, description, pubDate, updatedDate, heroImage, blogID } =
             <hr />
           </div>
           <slot />
-          <div class="likes-container">
-            <LikesCount blogID={blogID}>
-              <div slot="fallback">Loading...</div>
-            </LikesCount>
-            <LikeButton blogID={blogID} />
-          </div>
+          <LikesContainer blogID={blogID} client:load />
         </div>
       </article>
     </main>
     <Footer />
-  </body><style>
-    .likes-container {
-      display: flex;
-      justify-content: center;
-      gap: 1em;
-      margin-top: 1em;
-    }
-  </style>
+  </body>
 </html>
