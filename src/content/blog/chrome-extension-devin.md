@@ -89,8 +89,8 @@ export default defineBackground(() => {
 // entrypoints / mock / chrome.ts;
 
 type MockMessage = {
-  message: string
-  ...
+  message: string;
+  // Add any additional properties if needed, or remove this line if not required
 };
 
 type MockResponse = {
