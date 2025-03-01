@@ -74,13 +74,15 @@ if (import.meta.env.VITE_DEVELOPMENT === "true") {
 
 ```ts
 // mockする本来の処理 entrypoints/background.ts
-...
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  console.log("Received message:", message);
-  sendResponse({ message: "Hello from background!" });
-  return true;
+export default defineBackground(() => {
+  console.log("Hello background!", { id: browser.runtime.id });
+
+  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    console.log("Received message:", message);
+    sendResponse({ message: "Hello from background!" });
+    return true;
+  });
 });
-...
 ```
 
 ```ts
