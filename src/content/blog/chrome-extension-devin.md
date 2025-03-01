@@ -32,10 +32,10 @@ blogID: "01JN63XZXGTDT36V2H8QQEFDW5"
 **完成イメージ**
 
 ブラウザで index.html を開いたとき
-![extension-on-web](/public/chrome-extension-web.png)
+![extension-on-web](/chrome-extension-web.png)
 
 chrome 拡張として Popup を開いたとき
-![extension](/public/chrome-extension.png)
+![extension](/chrome-extension.png)
 
 Web ページ化するにあたって以下のような作業が必要です。
 
@@ -104,7 +104,7 @@ function sendMessage( // sendMessageはresponseを引数に持つcallbackを実�
   // 今回はsendMessageを読んでbackground.tsが返答を返すまでの部分をmockする
   // いくか処理がある場合は、それぞれ振る舞いをmockする
   const response: MockResponse = {
-    message: "Hello from background!"
+    message: "Hello from background!",
   };
 
   if (callback) {
