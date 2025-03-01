@@ -22,8 +22,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Add GitHub Copilot as reviewer
-        run: |
-          gh pr edit ${{ github.event.pull_request.number }} --add-reviewer "github-copilot[bot]"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # TODO: Temporary disable GitHub Copilot as reviewer cuz he is not in the list of reviewers
+    #   - name: Add GitHub Copilot as reviewer
+    #     run: |
+    #       gh pr edit ${{ github.event.pull_request.number }} --add-reviewer "github-copilot[bot]"
+    #     env:
+    #       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
