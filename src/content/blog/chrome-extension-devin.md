@@ -94,8 +94,7 @@ type MockMessage = {
 };
 
 type MockResponse = {
-  message: string
-  ...
+  message: string;
 };
 
 function sendMessage( // sendMessageはresponseを引数に持つcallbackを実行する
