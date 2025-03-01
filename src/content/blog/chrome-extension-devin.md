@@ -104,8 +104,7 @@ function sendMessage( // sendMessageはresponseを引数に持つcallbackを実�
   // 今回はsendMessageを読んでbackground.tsが返答を返すまでの部分をmockする
   // いくか処理がある場合は、それぞれ振る舞いをmockする
   const response: MockResponse = {
-    message: "Hello from background!",
-    ...
+    message: "Hello from background!"
   };
 
   if (callback) {
