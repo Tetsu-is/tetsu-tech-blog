@@ -22,7 +22,7 @@ export const onRequest = vercelOGPagesPlugin<Props>({
           width: "100%",
           height: "100%",
           backgroundImage:
-            'url("https://marp-for-thumbnail.tetsu-tech-blog.pages.dev/og/template.png")',
+            'url("https://tetsu-tech-blog.pages.dev/og/template.png")',
         }}
       >
         <h1>{ogTitle}</h1>
