@@ -17,12 +17,10 @@ const { blogID } = Astro.props;
     button.textContent = "いいね済み";
     button.disabled = true;
     const id = button.value;
-    const workersURL = "https://tetsu-tech-blog.pages.dev/api/likes/" + id;
-
-    // const devURL = "http://localhost:8788/api/likes/" + id;
+    const url = `${import.meta.env.PUBLIC_API_URL}/api/likes/${id}`;
 
     try {
-      await fetch(workersURL, {
+      await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

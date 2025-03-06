@@ -50,6 +50,13 @@
 | `make migrate/local`  | Migrate local D1 database     |
 | `make migrate/remote` | Migrate remote D1 database    |
 
+## Environment Variables
+
+`.env`
+| Name | Value |
+| :--------------- | :---------------------- |
+| `PUBLIC_API_URL` | `http://localhost:8788` |
+
 ## 🧞 bun Commands
 
 All commands are run from the root of the project, from a terminal:
