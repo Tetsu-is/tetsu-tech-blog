@@ -1,3 +1,0 @@
-DROP TABLE IF EXISTS blogs;
-CREATE TABLE IF NOT EXISTS blogs (id TEXT PRIMARY KEY, name TEXT, likes_count INTEGER);
-INSERT INTO blogs (id, name, likes_count) VALUES ("01JHTDF6QZRZCAQHT8CW78M7GW", 'looking-back-2024', 0);
