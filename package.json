@@ -23,13 +23,14 @@
     "@cloudflare/workers-types": "^4.20250109.0",
     "astro": "^4.15.4",
     "hono": "^4.6.16",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "svelte": "^5.20.4",
     "typescript": "^5.7.3"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@marp-team/marp-cli": "^4.1.2",
-    "react": "^19.0.0",
     "ulid": "^2.3.0",
     "wrangler": "^3.103.0"
   }

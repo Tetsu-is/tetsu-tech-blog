@@ -1,6 +1,6 @@
 {
 	"extends": "astro/tsconfigs/strict",
-	"include": [".astro/types.d.ts", "**/*"],
+	"include": [".astro/types.d.ts", "**/*", "**/*.ts", "**/*.tsx"],
 	"exclude": ["dist"],
 	"compilerOptions": {
 		"strictNullChecks": true,
@@ -8,6 +8,7 @@
 			{
 				"name": "@astrojs/ts-plugin"
 			}
-		]
+		],
+		"jsx": "react-jsx" // これないとデプロイ時に<>が読めなくてerrorになる
 	}
 }
