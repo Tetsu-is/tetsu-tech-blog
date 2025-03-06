@@ -32,6 +32,7 @@
     "@biomejs/biome": "1.9.4",
     "@marp-team/marp-cli": "^4.1.2",
     "@types/react": "^19.0.10",
+    "canvas": "^3.1.0",
     "ulid": "^2.3.0",
     "wrangler": "^3.103.0"
   }
