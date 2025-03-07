@@ -13,7 +13,7 @@ title=$title
 description="description"
 pubDate=$(date +"%b' '%d' '%Y")
 blogID=$(bun scripts/ulid.ts)
-heroImage="heroImage"
+heroImage="/og/${title}.png"
 migration_name="insert_blog_$blogID"
 
 export title description pubDate blogID heroImage
