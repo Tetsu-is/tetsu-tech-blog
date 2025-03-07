@@ -18,7 +18,7 @@ async function increment() {
 			},
 		});
 	} catch (e) {
-		console.log("良いね処理にしっぱいしました");
+		console.log("良いね処理に失敗しました");
 	}
 }
 
