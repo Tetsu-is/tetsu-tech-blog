@@ -3,7 +3,21 @@ import fs from "fs";
 import { CanvasRenderingContext2D, createCanvas, loadImage } from "canvas";
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
-const projectRoot = path.resolve(__dirname, "../../..");
+
+const findProjectRoot = () => {
+  let currentDir = __dirname;
+  while (currentDir !== "/") {
+    if (fs.existsSync(path.join(currentDir, "package.json"))) {
+      return currentDir;
+    }
+    currentDir = path.dirname(currentDir);
+  }
+  throw new Error(
+    "Could not find project root (no package.json found in parent directories)"
+  );
+};
+
+const projectRoot = findProjectRoot();
 
 const size = {
   width: 1200,
@@ -54,6 +68,12 @@ export const generateOgImage = async ({
   fileName,
   title,
 }: Args): Promise<void> => {
+  // Skip OG image generation in development mode
+  if (process.env.NODE_ENV !== "production") {
+    console.log("Skipping OG image generation in development mode");
+    return;
+  }
+
   /// create canvas
   const canvas = createCanvas(size.width, size.height);
   const ctx = canvas.getContext("2d");
