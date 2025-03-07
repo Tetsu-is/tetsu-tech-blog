@@ -2,7 +2,7 @@
 title: "2024年の開発を振り返る"
 description: "2024 年の開発を振り返る記事です。"
 pubDate: "Jan 15 2025"
-heroImage: "/blog-placeholder-2.jpg"
+heroImage: "/og/looking-back-2024.png"
 blogID: "01JHTDF6QZRZCAQHT8CW78M7GW"
 ---
 

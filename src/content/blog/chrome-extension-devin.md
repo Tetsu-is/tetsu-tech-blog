@@ -2,7 +2,7 @@
 title: "Chrome拡張のUI部分をWebページとして実行してデバッグできるようにしてみた"
 description: "AIツールの恩恵を受けるためにChrome拡張のUI部分をChrome拡張機能環境に依存しないようにしたときの備忘録"
 pubDate: "Feb 28 2025"
-heroImage: "/blog-placeholder-2.jpg"
+heroImage: "/og/chrome-extension-devin.png"
 blogID: "01JN63XZXGTDT36V2H8QQEFDW5"
 ---
 

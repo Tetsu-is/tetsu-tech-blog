@@ -1,15 +1,24 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
+import { generateOgImage } from "../../../scripts/oggen";
 import BlogPost from "../../layouts/BlogPost.astro";
 
 export async function getStaticPaths() {
 	const posts = await getCollection("blog");
-	return posts.map((post: any) => ({
+	return posts.map((post: CollectionEntry<"blog">) => ({
 		params: { slug: post.slug },
 		props: post,
 	}));
 }
 type Props = CollectionEntry<"blog">;
+
+const posts = await getCollection("blog");
+for (const post of posts) {
+	generateOgImage({
+		fileName: post.slug,
+		title: post.data.title,
+	});
+}
 
 const post = Astro.props;
 const { Content } = await post.render();

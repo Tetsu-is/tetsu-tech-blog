@@ -2,7 +2,7 @@
 title: '就活生へ。人事との"就活面談"で気をつけること'
 description: "就活で人事担当者と面談する機会が多くあります。そこで気をつけたいことについて話します。"
 pubDate: "Feb 12 2025"
-heroImage: "/blog-placeholder-3.jpg"
+heroImage: "/og/job-hunting-interview.png"
 blogID: "01JKTXKBH426NMDSVHTPFMM529"
 ---
 
