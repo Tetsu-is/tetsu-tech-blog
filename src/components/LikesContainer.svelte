@@ -5,6 +5,7 @@ let count = $state(0);
 let pressed = $state(false);
 
 const url = `${import.meta.env.PUBLIC_API_URL}/api/likes/${blogID}`;
+console.log(url);
 
 async function increment() {
 	count += 1;
