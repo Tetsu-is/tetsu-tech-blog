@@ -7,7 +7,14 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": [".astro", ".github", ".vscode/*", "dist/*"]
+		"ignore": [
+			".astro",
+			".github",
+			".vscode/*",
+			"dist/*",
+			"node_modules/*",
+			".wrangler/*"
+		]
 	},
 	"formatter": {
 		"enabled": true,

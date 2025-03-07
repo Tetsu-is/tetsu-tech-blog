@@ -17,26 +17,17 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
   <body>
     <Header />
     <main>
-      <h1>This is Tetsu's TechBlog</h1>
-      <br />
-      <h3>Overview</h3>
-      <br />
-      <article>
-        <h4>Owerner</h4>
-        <ul>
-          <li>Name: Tetsu-is</li>
-          <li>GitHub: <a href="https://github.com/Tetsu-is">@Tetsu-is</a></li>
-          <li>Job: Serverside Engineer</li>
-          <li>Major: Computer Science at Kwansei Gakuin University</li>
-        </ul>
-      </article>
-      <article>
-        <h4>Tech Stack</h4>
-        <ul>
-          <li>Web framework: Astro</li>
-          <li>Hosting: Couldflare Pages</li>
-        </ul>
-      </article>
+      <div class="hero-image">
+        <img src="/icon.jpeg" alt="icon" width={510} />
+      </div>
+      <h3>Tetsu-is</h3>
+      <a href="https://mixi.social/@tetsuis" target="_blank">
+        <img
+          class="social-icon"
+          src="https://d3nihth01o6cp1.cloudfront.net/assets/social_links/mixi2-brands-f3930ca81766ade083913c87b1e3d7baf4458d17b5f5e6585e3e369d5775ae44.png"
+          alt="mixi2"
+        />
+      </a>
     </main>
     <Footer />
   </body>
