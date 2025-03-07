@@ -2,7 +2,7 @@
 title: "自作ブログサイトの投稿フローを整備した話"
 description: "自作ブログサイトの投稿フローの効率化方法について説明します。"
 pubDate: "Feb 15 2025"
-heroImage: "/blog-placeholder-4.jpg"
+heroImage: "/og/publish-blog-flow.png"
 blogID: "01JM4JYQ9Q9G2F7X20JVNRMBEY"
 ---
 
@@ -219,7 +219,6 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy ./dist --project-name tetsu-tech-blog
-
 ```
 
 #### まとめ

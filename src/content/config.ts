@@ -5,7 +5,7 @@ export type BlogSchema = {
 	description: string;
 	pubDate: Date;
 	updatedDate?: Date;
-	heroImage?: string;
+	heroImage: string;
 	blogID: string;
 };
 
@@ -18,7 +18,7 @@ const blog = defineCollection({
 		// Transform string to Date object
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
-		heroImage: z.string().optional(),
+		heroImage: z.string(),
 		blogID: z.string(),
 	}),
 });
