@@ -20,6 +20,7 @@ jobs:
           command: d1 migrations apply prod-d1 --remote
   deploy:
     runs-on: ubuntu-latest
+    environment: deployment
     timeout-minutes: 60
     needs: migrate
     if: github.event.pull_request.merged == true
@@ -30,6 +31,8 @@ jobs:
       - name: Install dependencies
         run: bun install
       - name: Build
+        env:
+          PUBLIC_API_URL: ${{ secrets.PUBLIC_API_URL }}
         run: bun run build
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
