@@ -97,8 +97,7 @@ export const generateOgImage = async ({
 
   let currentLine = "";
 
-  const words = cleanTitle.split(" ");
-  for (const word of words) {
+  for (const word of cleanTitle) {
     const newLine = currentLine + word;
     const newLineWidth = ctx.measureText(newLine).width;
     if (newLineWidth > titleBox.width) {
@@ -123,5 +122,5 @@ export const generateOgImage = async ({
 
   // Save to both directories
   saveImageToPath(generated, fileName, "public");
-  saveImageToPath(generated, fileName, "dist");
+  // saveImageToPath(generated, fileName, "dist");
 };
