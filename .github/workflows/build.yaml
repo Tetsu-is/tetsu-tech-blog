@@ -4,6 +4,7 @@ on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: build
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -12,4 +13,6 @@ jobs:
       - name: Install dependencies
         run: bun install
       - name: Run Build
+        env:
+          PUBLIC_API_URL: ${{ secrets.PUBLIC_API_URL }}
         run: bun run build

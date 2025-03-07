@@ -19,7 +19,6 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: d1 migrations apply prod-d1 --remote
   deploy:
-    environment: deployment
     runs-on: ubuntu-latest
     timeout-minutes: 60
     needs: migrate
@@ -32,8 +31,6 @@ jobs:
         run: bun install
       - name: Build
         run: bun run build
-        env:
-          PUBLIC_API_URL: ${{ secrets.PUBLIC_API_URL }}
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
