@@ -7,7 +7,7 @@ interface Props {
   title: string;
   description: string;
   image?: string; // TODO: 無理やりprops生やしてるので修正する
-  heroImage?: string;
+  heroImage: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
