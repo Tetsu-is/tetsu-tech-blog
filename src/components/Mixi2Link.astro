@@ -1,0 +1,35 @@
+---
+type Props = {
+  href: string;
+  size?: number;
+};
+
+const { href, size = 100 } = Astro.props;
+const iconHref =
+  "https://d3nihth01o6cp1.cloudfront.net/assets/social_links/mixi2-brands-f3930ca81766ade083913c87b1e3d7baf4458d17b5f5e6585e3e369d5775ae44.png";
+---
+
+<a
+  href={href}
+  target="_blank"
+  style={`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: ${size}px;
+    height: ${size}px;
+    border: 2px solid rgb(255,134,97);
+    border-radius: 20px;
+    overflow: hidden;
+  `}
+>
+  <img
+    src={iconHref}
+    alt="mixi2"
+    style={`
+      width: 120%;
+      height: 120%;
+      object-fit: cover;
+    `}
+  />
+</a>
