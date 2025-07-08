@@ -15,3 +15,6 @@ run/server:
 
 run/all:
 	make run/astro & make run/server
+
+db/show-local-blog:
+	bunx wrangler d1 execute prod-d1 --local --command="SELECT * FROM blogs"   
