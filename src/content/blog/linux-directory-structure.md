@@ -40,7 +40,7 @@ staticとは実行ファイルなどの基本的にread-onlyで中身が変化�
 
 #### 各ディレクトリの意味
 
-##### /bin - essential user command binaries
+##### /bin
 ルート以外のファイルシステムがマウントされていないときに管理者、通常ユーザ関係なく必要なコマンドのバイナリファイルが配置されます。ルート以外のファイルシステムがマウントされていないのはシステムのブート時などです。原則として通常ユーザだけが使うコマンドは/usr/binに配置します。
 
 ex. ls, cat, chmodなど
@@ -66,7 +66,7 @@ ex. /etc/fish, /etc/X11
 
 ex. /home/taro, /home/jiro
 
-##### /lib - essential shared libraries and kernel modules
+##### /lib
 /binや/sbinのバイナリのために必要なライブラリを配置するディレクトリです。/bin同様にシステムの起動時に必要なものが格納されます。
 
 ex. /lib/libc.so.6(C標準ライブラリ), /lib/modules(カーネルモジュール)
