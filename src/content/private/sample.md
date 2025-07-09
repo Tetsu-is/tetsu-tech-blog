@@ -52,7 +52,8 @@ codeblock
 // これはJavaScriptのコードブロックです。
 function helloWorld() {
   console.log("Hello, World!");
-}helloWorld();
+};
+helloWorld();
 ```
 
 これはインラインコードのテストです。`console.log("Hello, World!");`
