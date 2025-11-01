@@ -30,7 +30,7 @@ blogID: "01K74KT90TAXKP2CP01XSM6AHJ"
 
 ## 結論：メールクライアントから unsubscribe できる仕組み
 
-結論から言うと、メルマガで送信されるメールには**List-Unsubscribe**と**List-Unsubscribe-Post**というヘッダが含まれています。この List-Unsubscribe ヘッダに配信停止用の URL やメールアドレス が記載されています。List-Unsubscribe-Post ヘッダには`List-Unsubscribe=OneClick`という固定値が入っています。これらを Gmail や Outlook などのメールクライアントはこの情報を読み取って、共通のインターフェースからワンクリックで購読停止手続きを行えるようにしているのです。
+結論から言うと、メルマガで送信されるメールには**List-Unsubscribe**と**List-Unsubscribe-Post**というヘッダが含まれています。この List-Unsubscribe ヘッダに配信停止用の URL やメールアドレスが記載されています。List-Unsubscribe-Post ヘッダには`List-Unsubscribe=OneClick`という固定値が入っています。これらを Gmail や Outlook などのメールクライアントはこの情報を読み取って、共通のインターフェースからワンクリックで購読停止手続きを行えるようにしているのです。
 
 ## List-Unsubscribe ヘッダ登場以前のメール購読停止
 
@@ -56,13 +56,13 @@ List-Unsubscribe ヘッダがある場合、購読停止 URL はメール本文�
 
 ## List-Unsubscribe ヘッダの中身ってどんなかんじ？
 
-最後に List-Unsubscribe ヘッダの中身は実際にどんな情報が記載されてるサンプルを紹介します。この例では URL に購読停止 API のエンドポイントが入っていて、末尾のパスパラメータからユーザを一意に特定してユーザの購読を停止します。
+最後に、List-Unsubscribe ヘッダの中身に実際にどんな情報が記載されているかをサンプルで紹介します。この例では URL に購読停止 API のエンドポイントが入っていて、末尾のパスパラメータからユーザを一意に特定してユーザの購読を停止します。
 
 ```
-# userを一意に特定するためのIDが末尾のパスパラメータに入っている
+# ユーザーを一意に特定するためのIDが末尾のパスパラメータに入っている
 List-Unsubscribe: <https://example.com/unsubscribe/abcdefg>
 
-# userを一意に特定するためのID
+# ワンクリック購読停止を有効にする固定値
 List-Unsubscribe-Post: List-Unsubscribe=OneClick
 ```
 
