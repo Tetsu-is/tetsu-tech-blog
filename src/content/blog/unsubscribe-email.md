@@ -30,7 +30,7 @@ blogID: "01K74KT90TAXKP2CP01XSM6AHJ"
 
 ## 結論：メールクライアントから unsubscribe できる仕組み
 
-結論から言うと、メルマガで送信されるメールには**List-Unsubscribe**と**List-Unsubscribe-Post**というヘッダが含まれています。この List-Unsubscribe ヘッダに配信停止用の URL やメールアドレス が記載されています。List-Unsubscribe-Post ヘッダには`List-Unsubscribe=OneClick`という固定値が入っています。これらを Gmail や Outlook などのメールクライアントはこの情報を読み取って、共通のインターフェースからワンクリックで購読停止手続きを行えるようにしているのです。
+結論から言うと、メルマガで送信されるメールには**List-Unsubscribe**と**List-Unsubscribe-Post**というヘッダが含まれています。この List-Unsubscribe ヘッダに配信停止用の URL やメールアドレスが記載されています。List-Unsubscribe-Post ヘッダには`List-Unsubscribe=OneClick`という固定値が入っています。これらを Gmail や Outlook などのメールクライアントはこの情報を読み取って、共通のインターフェースからワンクリックで購読停止手続きを行えるようにしているのです。
 
 ## List-Unsubscribe ヘッダ登場以前のメール購読停止
 
