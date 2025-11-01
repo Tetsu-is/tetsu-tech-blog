@@ -62,7 +62,7 @@ List-Unsubscribe ヘッダがある場合、購読停止 URL はメール本文�
 # userを一意に特定するためのIDが末尾のパスパラメータに入っている
 List-Unsubscribe: <https://example.com/unsubscribe/abcdefg>
 
-# userを一意に特定するためのID
+# ワンクリック購読停止を有効にする固定値
 List-Unsubscribe-Post: List-Unsubscribe=OneClick
 ```
 
