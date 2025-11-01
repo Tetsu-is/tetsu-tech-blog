@@ -1,7 +1,7 @@
 ---
 title: "gmailのunsubscribeボタンからメルマガ配信停止ができる仕組み"
 description: "List-Unsubscribeヘッダを使ってメールクライアントから簡単に配信停止できる仕組みについて解説します"
-pubDate: "Oct' '09' '2025"
+pubDate: "Oct 09 2025"
 heroImage: "/og/unsubscribe-email.png"
 blogID: "01K74KT90TAXKP2CP01XSM6AHJ"
 ---
