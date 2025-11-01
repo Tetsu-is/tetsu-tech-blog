@@ -63,7 +63,7 @@ List-Unsubscribe ヘッダがある場合、購読停止 URL はメール本文�
 List-Unsubscribe: <https://example.com/unsubscribe/abcdefg>
 
 # userを一意に特定するためのID
-List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Unsubscribe-Post: List-Unsubscribe=OneClick
 ```
 
 他にも URL にクエリパラメータとして jwt トークンを入れる場合もあります。
