@@ -11,7 +11,7 @@ fi
 # init vars
 title=$title
 description="description"
-pubDate=$(date +"%b' '%d' '%Y")
+pubDate=$(date +"%b %d %Y")
 blogID=$(bun scripts/ulid.ts)
 heroImage="/og/${title}.png"
 migration_name="insert_blog_$blogID"
