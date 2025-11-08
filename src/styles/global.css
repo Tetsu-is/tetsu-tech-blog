@@ -40,7 +40,7 @@ body {
 	overflow-wrap: break-word;
 	color: rgb(var(--gray-dark));
 	font-size: 16px;
-	font-weight: 500;
+	font-weight: 400;
 	line-height: 1.7;
 }
 main {
@@ -63,7 +63,7 @@ h1 {
 	font-size: 1.7em;
 }
 h2 {
-	font-size: 1.5em;
+	font-size: 24px;
 }
 h3 {
 	font-size: 1.3em;
