@@ -24,7 +24,8 @@ blogID: "01KATGD1Y7QSKP7KBH35JNF41E"
 
 ### 1. `/etc/keyboard/custom.kmap`というファイルを作成してCapsLockに相当するキーにCtrlを割り当てるように編集する。
 ```sh
-cp dumpkeys /etc/keyboard/custom.kmap # dumpkeysで現在のkeymapを取り出してコピーする
+sudo dumpkeys > custom.kmap
+sudo cp custom.kmap /etc/keyboard/custom.kmap # dumpkeysで現在のkeymapを取り出してコピーする
 ```
 keycode　58が左のCapsLockキーに対応しているので、これをControlに変更します。
 ```diff
