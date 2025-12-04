@@ -1,5 +1,5 @@
 ---
-title: "STORES Tech Conf 2025 参加レポート"
+title: "STORES Tech Conf 2025\n参加レポート"
 description: "11/26に開催されたSTORES Tech Conf 2025の参加レポートです。"
 pubDate: "Dec 04 2025"
 heroImage: "/og/stores-tech-conf-2025.png"
