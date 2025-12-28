@@ -1,6 +1,6 @@
 ---
 title: "開発バイトをやめてカフェバイトをはじめた"
-description: "2年半ほどソフトウェア開発のアルバイトをし、エンジニアとして内定をもらった今あえてカフェバイトしてみた感想を書きました。"
+description: "2年半ほどソフトウェア開発のアルバイトを学生がカフェバイトしてみた感想を書きました。"
 pubDate: "Nov 11 2025"
 heroImage: "/og/cafe-part-time-job.png"
 blogID: "01K9RN5YRK4RZBKPYZ3PRCNPQC"
