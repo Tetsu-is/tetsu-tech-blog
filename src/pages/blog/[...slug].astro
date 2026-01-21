@@ -22,7 +22,10 @@ try {
 		});
 	}
 } catch (error) {
-	console.warn("OG image generation skipped:", error instanceof Error ? error.message : String(error));
+	console.warn(
+		"OG image generation skipped:",
+		error instanceof Error ? error.message : String(error),
+	);
 }
 
 const post = Astro.props;
