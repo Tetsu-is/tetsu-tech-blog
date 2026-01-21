@@ -6,6 +6,8 @@ import sitemap from "@astrojs/sitemap";
 
 import svelte from "@astrojs/svelte";
 
+import { rehypeToc } from "./plugins/rehype-toc.js";
+
 // https://astro.build/config
 export default defineConfig({
 	site: "https://tetsu-tech-blog.pages.dev",
@@ -18,4 +20,7 @@ export default defineConfig({
 			compilerOptions: {},
 		}),
 	],
+	markdown: {
+		rehypePlugins: [rehypeToc],
+	},
 });

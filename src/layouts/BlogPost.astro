@@ -53,6 +53,40 @@ const { title, description, pubDate, updatedDate, heroImage, blogID } =
       .last-updated-on {
         font-style: italic;
       }
+      .table-of-contents {
+        background: rgb(var(--gray-light));
+        border-left: 4px solid rgb(var(--accent));
+        border-radius: 8px;
+        padding: 1.5em;
+        margin: 2em 0;
+      }
+      .toc-header {
+        font-size: 1.25em;
+        font-weight: bold;
+        margin-bottom: 0.75em;
+        color: rgb(var(--gray-dark));
+      }
+      .toc-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .toc-item-2 {
+        margin: 0.5em 0;
+      }
+      .toc-item-3 {
+        margin: 0.4em 0 0.4em 1.5em;
+        font-size: 0.95em;
+      }
+      .table-of-contents a {
+        color: rgb(var(--gray-dark));
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      .table-of-contents a:hover {
+        color: rgb(var(--accent));
+        text-decoration: underline;
+      }
     </style>
   </head>
 
