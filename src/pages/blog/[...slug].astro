@@ -1,6 +1,5 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
-import { generateOgImage } from "../../../scripts/oggen";
 import BlogPost from "../../layouts/BlogPost.astro";
 
 export async function getStaticPaths() {
@@ -12,12 +11,18 @@ export async function getStaticPaths() {
 }
 type Props = CollectionEntry<"blog">;
 
-const posts = await getCollection("blog");
-for (const post of posts) {
-	generateOgImage({
-		fileName: post.slug,
-		title: post.data.title,
-	});
+// OG image generation is optional - only run if canvas is available
+try {
+	const { generateOgImage } = await import("../../../scripts/oggen");
+	const posts = await getCollection("blog");
+	for (const post of posts) {
+		generateOgImage({
+			fileName: post.slug,
+			title: post.data.title,
+		});
+	}
+} catch (error) {
+	console.warn("OG image generation skipped:", error instanceof Error ? error.message : String(error));
 }
 
 const post = Astro.props;
