@@ -1,39 +1,39 @@
 {
-  "name": "tetsu-tech-blog",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "NODE_ENV=production astro check && NODE_ENV=production astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "format": "biome format --write",
-    "lint": "biome lint --write",
-    "check": "biome check --write"
-  },
-  "dependencies": {
-    "@astrojs/check": "^0.9.3",
-    "@astrojs/cloudflare": "^12.2.1",
-    "@astrojs/mdx": "^3.1.5",
-    "@astrojs/rss": "^4.0.7",
-    "@astrojs/sitemap": "^3.1.6",
-    "@astrojs/svelte": "^7.0.4",
-    "@astrojs/ts-plugin": "^1.10.4",
-    "@cloudflare/pages-plugin-vercel-og": "^0.1.2",
-    "@cloudflare/workers-types": "^4.20250109.0",
-    "astro": "^4.15.4",
-    "hono": "^4.6.16",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "svelte": "^5.20.4",
-    "typescript": "^5.7.3"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@marp-team/marp-cli": "^4.1.2",
-    "@types/react": "^19.0.10",
-    "canvas": "^3.1.0",
-    "ulid": "^2.3.0",
-    "wrangler": "^3.103.0"
-  }
+	"name": "tetsu-tech-blog",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "NODE_ENV=production astro check && NODE_ENV=production astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"format": "biome format --write",
+		"lint": "biome lint --write",
+		"check": "biome check --write"
+	},
+	"dependencies": {
+		"@astrojs/check": "^0.9.3",
+		"@astrojs/cloudflare": "^12.2.1",
+		"@astrojs/mdx": "^3.1.5",
+		"@astrojs/rss": "^4.0.7",
+		"@astrojs/sitemap": "^3.1.6",
+		"@astrojs/svelte": "^7.0.4",
+		"@astrojs/ts-plugin": "^1.10.4",
+		"@cloudflare/pages-plugin-vercel-og": "^0.1.2",
+		"@cloudflare/workers-types": "^4.20250109.0",
+		"astro": "^4.15.4",
+		"hono": "^4.6.16",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"svelte": "^5.20.4",
+		"typescript": "^5.7.3"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@marp-team/marp-cli": "^4.1.2",
+		"@types/react": "^19.0.10",
+		"canvas": "^3.1.0",
+		"ulid": "^2.3.0",
+		"wrangler": "^3.103.0"
+	}
 }
