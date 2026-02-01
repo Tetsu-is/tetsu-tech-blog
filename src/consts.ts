@@ -3,3 +3,4 @@
 
 export const SITE_TITLE = "@Tetsu-is";
 export const SITE_DESCRIPTION = "Welcome to my website!";
+export const ZENN_USERNAME = "tetsu_is";

@@ -4,11 +4,55 @@ import BaseHead from "../../components/BaseHead.astro";
 import Footer from "../../components/Footer.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
 import Header from "../../components/Header.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import { SITE_DESCRIPTION, SITE_TITLE, ZENN_USERNAME } from "../../consts";
+import { fetchZennArticles, type ZennArticle } from "../../lib/zenn";
 
-const posts = (await getCollection("blog")).sort(
+// Fetch local blog posts
+const localPosts = (await getCollection("blog")).sort(
 	(a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
 		b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+// Fetch Zenn articles
+const zennArticles = await fetchZennArticles(ZENN_USERNAME);
+
+// Create a unified interface for both types
+interface UnifiedPost {
+	type: "local" | "zenn";
+	slug: string;
+	title: string;
+	pubDate: Date;
+	heroImage: string;
+	url: string;
+	isExternal: boolean;
+}
+
+// Convert local posts to unified format
+const localPostsUnified: UnifiedPost[] = localPosts.map((post) => ({
+	type: "local",
+	slug: post.slug,
+	title: post.data.title,
+	pubDate: post.data.pubDate,
+	heroImage: post.data.heroImage,
+	url: `/blog/${post.slug}/`,
+	isExternal: false,
+}));
+
+// Convert Zenn articles to unified format
+const zennPostsUnified: UnifiedPost[] = zennArticles.map((article: ZennArticle) => ({
+	type: "zenn",
+	slug: article.slug,
+	title: article.title,
+	pubDate: new Date(article.published_at),
+	// Use OG image if available, otherwise fall back to Zenn's default
+	heroImage: article.og_image_url || `https://zenn.dev/images/og-image-1200x630.png`,
+	url: `https://zenn.dev/${article.user.username}/articles/${article.slug}`,
+	isExternal: true,
+}));
+
+// Merge and sort all posts by publication date
+const allPosts = [...localPostsUnified, ...zennPostsUnified].sort(
+	(a, b) => b.pubDate.valueOf() - a.pubDate.valueOf(),
 );
 ---
 
@@ -66,6 +110,17 @@ const posts = (await getCollection("blog")).sort(
         margin: 0;
         color: rgb(var(--gray));
       }
+      .external-badge {
+        display: inline-block;
+        background: rgb(var(--accent));
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+      }
       ul li a:hover h4,
       ul li a:hover .date {
         color: rgb(var(--accent));
@@ -96,18 +151,21 @@ const posts = (await getCollection("blog")).sort(
       <section>
         <ul>
           {
-            posts.map((post: any) => (
+            allPosts.map((post) => (
               <li>
-                <a href={`/blog/${post.slug}/`}>
+                <a href={post.url} target={post.isExternal ? "_blank" : undefined} rel={post.isExternal ? "noopener noreferrer" : undefined}>
                   <img
                     width={720}
                     height={360}
-                    src={post.data.heroImage}
+                    src={post.heroImage}
                     alt=""
                   />
-                  <h4 class="title">{post.data.title}</h4>
+                  <h4 class="title">
+                    {post.title}
+                    {post.isExternal && <span class="external-badge">Zenn</span>}
+                  </h4>
                   <p class="date">
-                    <FormattedDate date={post.data.pubDate} />
+                    <FormattedDate date={post.pubDate} />
                   </p>
                 </a>
               </li>
